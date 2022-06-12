@@ -39,7 +39,10 @@ $routes->set404Override();
 // route since we don't have to scan directories.
 $routes->get('/', 'Home::index');
 
-$routes->get('categories', 'CategoryController::index');
+// $routes->get('categories', 'CategoryController::index');
+
+$routes->resource('category');
+$routes->presenter('item');
 
 /*
  * --------------------------------------------------------------------

@@ -18,6 +18,7 @@ class CreateCategoriesTables extends Migration
             'name' => [
                 'type'       => 'VARCHAR',
                 'constraint' => '100',
+                'null'       => false,
             ],
             'created_at' => [
                 'type'       => 'DATETIME',
@@ -32,12 +33,12 @@ class CreateCategoriesTables extends Migration
                 'null'       => true,
             ],
         ]);
-        $this->forge->addKey('blog_id', true);
+        $this->forge->addKey('category_id', true);
         $this->forge->createTable('categories');
     }
 
     public function down()
     {
-        $this->forge->dropTable('categoriess');
+        $this->forge->dropTable('categories');
     }
 }
