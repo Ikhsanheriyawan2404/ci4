@@ -58,10 +58,13 @@
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="<?= site_url('auth/logout') ?>">
+                                            <a onclick="event.preventDefault();document.getElementById('logout-form').submit();">
                                                 <i class="fa fa-power-off"></i>
                                                 <span>Logout</span>
                                             </a>
+                                            <form id="logout-form" action="<?= site_url('logout') ?>" method="POST" class="d-none">
+                                                <?= csrf_field() ?>
+                                            </form>
                                         </li>
                                     </ul>
                                 </li>
