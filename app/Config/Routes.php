@@ -45,7 +45,9 @@ $routes->get('/', 'Home::index');
 // $routes->get('categories', 'CategoryController::index');
 
 $routes->resource('category', ['filter' => 'isLoggedIn']);
-$routes->presenter('item');
+// $routes->resource('item', ['filter' => 'isLoggedIn']);
+$routes->get('item', 'Item::index', ['filter' => 'isLoggedIn']);
+$routes->get('item/datatables', 'Item::datatables', ['filter' => 'isLoggedIn']);
 
 /*
  * --------------------------------------------------------------------

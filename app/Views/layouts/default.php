@@ -18,11 +18,6 @@
     <link href="<?= base_url() ?>/assets/plugins/justified-gallery/justifiedGallery.css" rel="stylesheet">
     <link href="<?= base_url() ?>/assets/css/style_v2.css" rel="stylesheet">
     <link href="<?= base_url() ?>/assets/plugins/chartist/chartist.min.css" rel="stylesheet">
-    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-				<script src="<?= base_url() ?>/assets/http://getbootstrap.com/docs-assets/js/html5shiv.js"></script>
-				<script src="<?= base_url() ?>/assets/http://getbootstrap.com/docs-assets/js/respond.min.js"></script>
-		<![endif]-->
 <?= $this->renderSection('custom-styles') ?>
 </head>
 
@@ -95,39 +90,7 @@
     <!-- All functions for this theme + document.ready processing -->
     <script src="<?= base_url() ?>/assets/js/devoops.js"></script>
     <script type="text/javascript">
-        // Run Select2 plugin on elements
-        function getSelect2() {
-            $('.multiselect2').select2({
-                placeholder: "Select OS"
-            });
-            $('.select2').select2();
-        }
-        // Run timepicker
-        function getTimePicker() {
-            $('.input_time').timepicker({
-                setDate: new Date()
-            });
-        }
-        $(document).ready(function() {
-            // Create Wysiwig editor for textare
-            TinyMCEStart('#wysiwig_simple', null);
-            TinyMCEStart('#wysiwig_full', 'extreme');
-            // Add slider for change test input length
-            FormLayoutExampleInputLength($(".slider-style"));
-            // Initialize datepicker
-            $('.input_datepicker').datepicker({
-                setDate: new Date()
-            });
-            // Load Timepicker plugin
-            LoadTimePickerScript(getTimePicker);
-            // Add tooltip to form-controls
-            $('.form-control').tooltip();
-            LoadSelect2Script(getSelect2);
-            // Load example of form validation
-            LoadBootstrapValidatorScript(DemoFormValidator);
-            // Add drag-n-drop feature to boxes
-            WinMove();
-        });
+
     </script>
 
 <?= $this->renderSection('custom-scripts') ?>
