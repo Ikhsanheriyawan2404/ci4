@@ -4,12 +4,12 @@ namespace App\Database\Migrations;
 
 use CodeIgniter\Database\Migration;
 
-class CreateCategoriesTables extends Migration
+class CreateUsersTables extends Migration
 {
     public function up()
     {
         $this->forge->addField([
-            'category_id' => [
+            'user_id' => [
                 'type'           => 'BIGINT',
                 'constraint'     => 11,
                 'unsigned'       => true,
@@ -17,7 +17,15 @@ class CreateCategoriesTables extends Migration
             ],
             'name' => [
                 'type'       => 'VARCHAR',
-                'constraint' => '100',
+                'constraint' => '255',
+            ],
+            'email' => [
+                'type'       => 'VARCHAR',
+                'constraint' => '255',
+            ],
+            'password' => [
+                'type'       => 'VARCHAR',
+                'constraint' => '255',
             ],
             'created_at' => [
                 'type'       => 'DATETIME',
@@ -32,12 +40,12 @@ class CreateCategoriesTables extends Migration
                 'null'       => true,
             ],
         ]);
-        $this->forge->addKey('category_id', true);
-        $this->forge->createTable('categories');
+        $this->forge->addKey('user_id', true);
+        $this->forge->createTable('users');
     }
 
     public function down()
     {
-        $this->forge->dropTable('categories');
+        $this->forge->dropTable('users');
     }
 }
