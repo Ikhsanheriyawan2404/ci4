@@ -15,7 +15,7 @@ class Auth extends BaseController
     public function login()
     {
         if (session('user_id')) {
-            return redirect()->to(site_url('category'));
+            return redirect()->to(site_url('/'));
         }
         return view('auth/login', [
             'title' => 'Halaman Login',
@@ -29,7 +29,7 @@ class Auth extends BaseController
         if ($user) {
             if (password_verify($this->request->getPost('password'), $user->password)) {
                 session()->set(['user_id' => $user->user_id]);
-                return redirect()->to(site_url('category'));
+                return redirect()->to(site_url('/'));
             } else {
                 return redirect()->back()->with('error', 'Password tidak sesuai');
             }
@@ -40,7 +40,7 @@ class Auth extends BaseController
 
     public function logout()
     {
-        session()->remove('user_id');
+        session()->destroy('user_id');
         return redirect()->to(site_url('login'));
     }
 }

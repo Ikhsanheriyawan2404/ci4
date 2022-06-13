@@ -1,11 +1,11 @@
 <li>
-    <a href="<?= site_url() ?>" class="ajax-link">
+    <a href="<?= site_url('/') ?>" class="ajax-link">
         <i class="fa fa-dashboard"></i>
         <span class="hidden-xs">Dashboard</span>
     </a>
 </li>
 <li class="dropdown">
-    <a href="#" class="dropdown-toggle">
+    <a href="<?= site_url('category') ?>" class="dropdown-toggle">
         <i class="fa fa-desktop"></i>
         <span class="hidden-xs">Laporan</span>
     </a>
