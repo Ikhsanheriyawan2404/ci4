@@ -44,7 +44,7 @@ $routes->get('/', 'Home::index');
 
 // $routes->get('categories', 'CategoryController::index');
 
-$routes->resource('category');
+$routes->resource('category', ['filter' => 'isLoggedIn']);
 $routes->presenter('item');
 
 /*
