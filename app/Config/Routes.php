@@ -27,7 +27,7 @@ $routes->set404Override();
 // where controller filters or CSRF protection are bypassed.
 // If you don't want to define all routes, please use the Auto Routing (Improved).
 // Set `$autoRoutesImproved` to true in `app/Config/Feature.php` and set the following to true.
-// $routes->setAutoRoute(true);
+$routes->setAutoRoute(true);
 
 /*
  * --------------------------------------------------------------------
@@ -40,14 +40,15 @@ $routes->post('login/proccess', 'Auth::proccess');
 $routes->post('logout', 'Auth::logout');
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
-$routes->get('/', 'Home::index');
+// $routes->get('/', 'Home::index');
+$routes->addRedirect('/', 'home');
 
 // $routes->get('categories', 'CategoryController::index');
 
 $routes->resource('category', ['filter' => 'isLoggedIn']);
-// $routes->resource('item', ['filter' => 'isLoggedIn']);
-$routes->get('item', 'Item::index', ['filter' => 'isLoggedIn']);
 $routes->get('item/datatables', 'Item::datatables', ['filter' => 'isLoggedIn']);
+$routes->resource('item', ['filter' => 'isLoggedIn']);
+// $routes->get('item', 'Item::index', ['filter' => 'isLoggedIn']);
 
 /*
  * --------------------------------------------------------------------

@@ -16,7 +16,7 @@
 </div>
 
 <div class="page-header">
-    <a class="btn btn-primary btn-sm" onclick="tambah()"><span><i class="fa fa-users"></i></span> Tambah </a>
+    <a class="btn btn-primary btn-sm" onchange="tambah()"><span><i class="fa fa-users"></i></span> Tambah </a>
 </div>
 
 <div class="row">
@@ -60,25 +60,36 @@
 	</div>
 </div>
 
+
 <!-- Modal -->
-<div class="modal fade" id="tesModal">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-    <!-- header-->
-      <div class="modal-header">
-        <button class="close" data-dismiss="modal"><span>&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">Judul Modal</h4>
-      </div>
-      <!--body-->
-      <div class="modal-body">
-        Konten yang ingin ditampilkan disini
-      </div>
-      <!--footer-->
-      <div class="modal-footer">
-        <button class="btn btn-danger" data-dismiss="modal">Tutup</button>
-      </div>
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Modal titleh</5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true"></span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="form-users">
+                    <div class="form-group">
+                        <label for="name">Nama Item</label>
+                        <input type="hidden" name="item_id" id="item_id">
+                        <input type="text" class="form-control" id="name" name="name">
+                    </div>
+                    <div class="form-group">
+                        <label for="category_id">Category</label>
+                        <input type="text" class="form-control" id="category_id" name="category_id">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Closebutton>
+                <button type="button" class="btn btn-primary" onclick="proses()">Save changesbutton>
+            </div>
+        </div>
     </div>
-  </div>
 </div>
 
 <?= $this->section('custom-styles') ?>
@@ -100,9 +111,70 @@
 <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
 
 <script type="text/javascript">
-    let url;
-    // let status = 'tambah';
-    $(document).ready(function() {
+let url;
+let status = 'tambah';
+
+$(document).ready(function() {
+    show_tables();
+
+    function edit(id_user) {
+        status = 'edit';
+        $('#exampleModal').modal('show');
+        $('#id_user').val(id_user);
+        $.ajax({
+            url: " echo base_url('home/edit'); ?>",
+            type: 'POST',
+            dataType: 'JSON',
+            data: $('#form-users').serialize(),
+            success: function(x) {
+                if (x.sukses == true) {
+                    $('#nama_user').val(x.data.nama_user);
+                    $('#alamat').val(x.data.alamat);
+                }
+            }
+        });
+    }
+
+    function hapus(id_user) {
+        $.ajax({
+            url: " echo base_url('home/hapus'); ?>",
+            type: 'POST',
+            dataType: 'JSON',
+            data: {
+                id_user: id_user
+            },
+            success: function(x) {
+                if (x.sukses == true) {
+                    tampil_table_users();
+                }
+            }
+        });
+    }
+
+    function proses() {
+        if (status == 'tambah') {
+            url = " echo base_url('home/tambah'); ?>";
+        } else if (status == 'edit') {
+            url = " echo base_url('home/update'); ?>";
+        } else {
+            url = " echo base_url('home/hapus'); ?>";
+        }
+
+        $.ajax({
+            url: url,
+            type: 'POST',
+            dataType: 'JSON',
+            data: $('#form-users').serialize(),
+            success: function(x) {
+                if (x.sukses == true) {
+                    $('#exampleModal').modal('hide');
+                    tampil_table_users();
+                }
+            }
+        });
+    }
+
+    function show_tables() {
         $('#example').DataTable({
             processing: true,
             serverSide: true,
@@ -127,9 +199,15 @@
                 }
             ],
         });
+    }
+});
 
-    });
-
+function tambah() {
+    status = 'tambah';
+    alert('htest');
+    $('#exampleModal').modal('show');
+    $('#form-users')[0].reset();
+}
 
 </script>
 

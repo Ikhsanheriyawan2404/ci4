@@ -14,7 +14,7 @@
     </ul>
 </li>
 <li class="dropdown">
-    <a href="#" class="dropdown-toggle">
+    <a href="<?= site_url('item') ?>" class="dropdown-toggle">
         <i class="fa fa-bar-chart-o"></i>
         <span class="hidden-xs">Transaksi</span>
     </a>

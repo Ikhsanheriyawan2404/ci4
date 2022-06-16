@@ -36,8 +36,8 @@ class Item extends ResourceController
             $row[]  = $list->name;
             $row[]  = $list->category_id;
             $row[]  = "
-                <button class='btn btn-primary'><i class='fa fa-pencil'></i></button>
-                <button class='btn btn-danger'><i class='fa fa-trash'></i></button>
+                <a onclick='edit()' class='btn btn-primary'><i class='fa fa-pencil'></i></a>
+                <a class='btn btn-danger'><i class='fa fa-trash'></i></a>
             ";
 
             $data[] = $row;
