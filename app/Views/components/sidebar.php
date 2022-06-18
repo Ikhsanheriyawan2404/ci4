@@ -1,179 +1,57 @@
-<li>
-    <a href="<?= site_url('/') ?>" class="ajax-link">
-        <i class="fa fa-dashboard"></i>
-        <span class="hidden-xs">Dashboard</span>
-    </a>
-</li>
-<li class="dropdown">
-    <a href="<?= site_url('category') ?>" class="dropdown-toggle">
-        <i class="fa fa-desktop"></i>
-        <span class="hidden-xs">Laporan</span>
-    </a>
-    <ul class="dropdown-menu">
-        <li><a class="ajax-link" href="ajax/ui_grid.html">Generate Report</a></li>
-    </ul>
-</li>
-<li class="dropdown">
-    <a href="<?= site_url('item') ?>" class="dropdown-toggle">
-        <i class="fa fa-bar-chart-o"></i>
-        <span class="hidden-xs">Transaksi</span>
-    </a>
-    <ul class="dropdown-menu">
-        <li><a class="ajax-link" href="ajax/charts_xcharts.html">xCharts</a></li>
-    </ul>
-</li>
-<li class="dropdown">
-    <a href="#" class="dropdown-toggle">
-        <i class="fa fa-table"></i>
-        <span class="hidden-xs">Penjualan</span>
-    </a>
-    <ul class="dropdown-menu">
-        <li><a class="ajax-link" href="ajax/tables_simple.html">Fuel Retail (BBM)</a></li>
-        <li><a class="ajax-link" href="ajax/tables_datatables.html">POS Retail</a></li>
-        <li><a class="ajax-link" href="ajax/tables_beauty.html">Biaya Pendapatan</a></li>
-    </ul>
-</li>
-<li class="dropdown">
-    <a href="#" class="dropdown-toggle">
-        <i class="fa fa-pencil-square-o"></i>
-        <span class="hidden-xs">Penerimaan BBM</span>
-    </a>
-    <ul class="dropdown-menu">
-        <li><a class="ajax-link" href="ajax/forms_elements.html">Elements</a></li>
-        <li><a class="ajax-link" href="ajax/forms_layouts.html">Layouts</a></li>
-        <li><a class="ajax-link" href="ajax/forms_file_uploader.html">File Uploader</a></li>
-    </ul>
-</li>
-<li class="dropdown">
-    <a href="#" class="dropdown-toggle">
-        <i class="fa fa-list"></i>
-        <span class="hidden-xs">Kas dan Bank</span>
-    </a>
-    <ul class="dropdown-menu">
-        <li><a href="ajax/page_login.html">Kas Operasional</a></li>
-        <li><a class="ajax-link add-full" href="ajax/page_messages.html">Kas Rekening</a></li>
-    </ul>
-</li>
-<li class="dropdown">
-    <a href="#" class="dropdown-toggle">
-        <i class="fa fa-map-marker"></i>
-        <span class="hidden-xs">Biaya</span>
-    </a>
-    <ul class="dropdown-menu">
-        <li><a class="ajax-link" href="ajax/maps.html">OpenStreetMap</a></li>
-        <li><a class="ajax-link" href="ajax/map_fullscreen.html">Fullscreen map</a></li>
-        <li><a class="ajax-link" href="ajax/map_leaflet.html">Leaflet</a></li>
-    </ul>
-</li>
-<li class="dropdown">
-    <a href="#" class="dropdown-toggle">
-        <i class="fa fa-picture-o"></i>
-        <span class="hidden-xs">Gallery</span>
-    </a>
-    <ul class="dropdown-menu">
-        <li><a class="ajax-link" href="ajax/gallery_simple.html">Simple Gallery</a></li>
-        <li><a class="ajax-link" href="ajax/gallery_flickr.html">Flickr Gallery</a></li>
-    </ul>
-</li>
-<li>
-    <a class="ajax-link" href="ajax/typography.html">
-        <i class="fa fa-font"></i>
-        <span class="hidden-xs">Pembelian</span>
-    </a>
-</li>
-<li>
-    <a class="ajax-link" href="ajax/calendar.html">
-        <i class="fa fa-calendar"></i>
-        <span class="hidden-xs">Kontak</span>
-    </a>
-</li>
-<li>
-    <a class="ajax-link" href="ajax/calendar.html">
-        <i class="fa fa-calendar"></i>
-        <span class="hidden-xs">Produk</span>
-    </a>
-</li>
-<li>
-    <a class="ajax-link" href="ajax/calendar.html">
-        <i class="fa fa-calendar"></i>
-        <span class="hidden-xs">Konfigurasi</span>
-    </a>
-</li>
-<li class="dropdown">
-    <a href="#" class="dropdown-toggle">
-        <i class="fa fa-map-marker"></i>
-        <span class="hidden-xs">Akun Perkiraan</span>
-    </a>
-    <ul class="dropdown-menu">
-        <li><a class="ajax-link" href="ajax/maps.html">Saldo Awal</a></li>
-        <li><a class="ajax-link" href="ajax/map_fullscreen.html">Akun Biaya</a></li>
-        <li><a class="ajax-link" href="ajax/map_leaflet.html">Daftar Akun</a></li>
-    </ul>
-</li>
-<li class="active-parent active">
-    <a class="ajax-link" href="<?= site_url('users') ?>">
-        <i class="fa fa-user"></i>
-        <span class="hidden-xs">Users</span>
-    </a>
-</li>
-<!-- <li class="dropdown">
-    <a href="#" class="dropdown-toggle">
-        <i class="fa fa-picture-o"></i>
-        <span class="hidden-xs">Multilevel menu</span>
-    </a>
-    <ul class="dropdown-menu">
-        <li><a href="#">First level menu</a></li>
-        <li><a href="#">First level menu</a></li>
-        <li class="dropdown">
-            <a href="#" class="dropdown-toggle">
-                <i class="fa fa-plus-square"></i>
-                <span class="hidden-xs">Second level menu group</span>
+<div class="sidebar">
+    <!-- Sidebar user panel (optional) -->
+    <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+        <div class="image">
+        <img src="{{ asset('asset') }}/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
+        </div>
+        <div class="info">
+        <a href="{{ route('users.index') }}" class="d-block"><?= 'Ikhsan Heriyawan' ?></a>
+        </div>
+    </div>
+
+    <!-- Sidebar Menu -->
+    <nav class="mt-2">
+        <ul class="nav nav-pills nav-sidebar flex-column nav-child-indent" data-widget="treeview" role="menu" data-accordion="false">
+        <!-- Add icons to the links using the .nav-icon class
+                with font-awesome or any other icon font library -->
+        <li class="nav-item menu-open">
+            <a href="<?= base_url('home') ?>" class="nav-link">
+            <i class="nav-icon fas fa-tachometer-alt"></i>
+            <p>
+                Dashboard
+            </p>
             </a>
-            <ul class="dropdown-menu">
-                <li><a href="#">Second level menu</a></li>
-                <li><a href="#">Second level menu</a></li>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle">
-                        <i class="fa fa-plus-square"></i>
-                        <span class="hidden-xs">Three level menu group</span>
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li><a href="#">Three level menu</a></li>
-                        <li><a href="#">Three level menu</a></li>
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle">
-                                <i class="fa fa-plus-square"></i>
-                                <span class="hidden-xs">Four level menu group</span>
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li><a href="#">Four level menu</a></li>
-                                <li><a href="#">Four level menu</a></li>
-                                <li class="dropdown">
-                                    <a href="#" class="dropdown-toggle">
-                                        <i class="fa fa-plus-square"></i>
-                                        <span class="hidden-xs">Five level menu group</span>
-                                    </a>
-                                    <ul class="dropdown-menu">
-                                        <li><a href="#">Five level menu</a></li>
-                                        <li><a href="#">Five level menu</a></li>
-                                        <li class="dropdown">
-                                            <a href="#" class="dropdown-toggle">
-                                                <i class="fa fa-plus-square"></i>
-                                                <span class="hidden-xs">Six level menu group</span>
-                                            </a>
-                                            <ul class="dropdown-menu">
-                                                <li><a href="#">Six level menu</a></li>
-                                                <li><a href="#">Six level menu</a></li>
-                                            </ul>
-                                        </li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </li>
-                        <li><a href="#">Three level menu</a></li>
-                    </ul>
-                </li>
-            </ul>
         </li>
-    </ul>
-</li> -->
+        <li class="nav-item">
+            <a href="<?= base_url('item') ?>" class="nav-link">
+            <i class="nav-icon fas fa-tachometer-alt"></i>
+            <p>
+                Items
+            </p>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a href="<?= base_url('category') ?>" class="nav-link">
+            <i class="nav-icon fas fa-tachometer-alt"></i>
+            <p>
+                Categories
+            </p>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link"
+                onclick="event.preventDefault();document.getElementById('logout-form').submit();">
+            <i class="nav-icon fas fa-sign-out-alt" style="color: rgb(184, 0, 0);"></i>
+            <p>
+                <span>Keluar</span>
+                <form id="logout-form" action="<?= base_url('logout') ?>" method="POST" class="d-none">
+                    <?= csrf_field() ?>
+                </form>
+            </p>
+            </a>
+        </li>
+
+        </ul>
+    </nav>
+    <!-- /.sidebar-menu -->
+</div>

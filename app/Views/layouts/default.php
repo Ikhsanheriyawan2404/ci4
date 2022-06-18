@@ -1,99 +1,114 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="utf-8">
-    <title><?= $title ?? 'Aplikasi CI4' ?></title>
-    <meta name="description" content="description">
-    <meta name="author" content="DevOOPS">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="<?= base_url() ?>/assets/plugins/bootstrap/bootstrap.css" rel="stylesheet">
-    <link href="<?= base_url() ?>/assets/plugins/jquery-ui/jquery-ui.min.css" rel="stylesheet">
-    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
-    <link href='http://fonts.googleapis.com/css?family=Righteous' rel='stylesheet' type='text/css'>
-    <link href="<?= base_url() ?>/assets/plugins/fancybox/jquery.fancybox.css" rel="stylesheet">
-    <link href="<?= base_url() ?>/assets/plugins/fullcalendar/fullcalendar.css" rel="stylesheet">
-    <link href="<?= base_url() ?>/assets/plugins/xcharts/xcharts.min.css" rel="stylesheet">
-    <link href="<?= base_url() ?>/assets/plugins/select2/select2.css" rel="stylesheet">
-    <link href="<?= base_url() ?>/assets/plugins/justified-gallery/justifiedGallery.css" rel="stylesheet">
-    <link href="<?= base_url() ?>/assets/css/style_v2.css" rel="stylesheet">
-    <link href="<?= base_url() ?>/assets/plugins/chartist/chartist.min.css" rel="stylesheet">
-<?= $this->renderSection('custom-styles') ?>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title><?= $title ?? 'CodeIgniter 4' ?></title>
+
+  <!-- Site Icons -->
+  <!-- <link rel="shortcut icon" href="<?= base_url('assets') ?>/images/hms.ico" type="image/x-icon" />
+  <link rel="apple-touch-icon" href="<?= base_url('assets') ?>/images/apple-touch-icon.png"> -->
+
+  <?= $this->renderSection('custom-styles') ?>
+
+  <!-- Google Font: Source Sans Pro -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="<?= base_url('asset') ?>/plugins/fontawesome-free/css/all.min.css">
+  <!-- Ionicons -->
+  <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+  <!-- Tempusdominus Bootstrap 4 -->
+  <link rel="stylesheet" href="<?= base_url('asset') ?>/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
+  <!-- iCheck -->
+  <link rel="stylesheet" href="<?= base_url('asset') ?>/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+  <!-- JQVMap -->
+  <link rel="stylesheet" href="<?= base_url('asset') ?>/plugins/jqvmap/jqvmap.min.css">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="<?= base_url('asset') ?>/dist/css/adminlte.min.css">
+  <!-- overlayScrollbars -->
+  <link rel="stylesheet" href="<?= base_url('asset') ?>/plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
+  <!-- Daterange picker -->
+  <link rel="stylesheet" href="<?= base_url('asset') ?>/plugins/daterangepicker/daterangepicker.css">
+  <!-- summernote -->
+  <link rel="stylesheet" href="<?= base_url('asset') ?>/plugins/summernote/summernote-bs4.min.css">
 </head>
+<body class="hold-transition sidebar-mini layout-fixed">
+<div class="wrapper">
 
-<body>
-    <!--Start Header-->
-    <div id="screensaver">
-        <canvas id="canvas"></canvas>
-        <i class="fa fa-lock" id="screen_unlock"></i>
-    </div>
-    <div id="modalbox">
-        <div class="devoops-modal">
-            <div class="devoops-modal-header">
-                <div class="modal-header-name">
-                    <span>Basic table</span>
-                </div>
-                <div class="box-icons">
-                    <a class="close-link">
-                        <i class="fa fa-times"></i>
-                    </a>
-                </div>
-            </div>
-            <div class="devoops-modal-inner">
-            </div>
-            <div class="devoops-modal-bottom">
-            </div>
-        </div>
-    </div>
-    
-    <?= $this->include('components/navbar') ?>
+  <!-- Preloader -->
+  <div class="preloader flex-column justify-content-center align-items-center">
+    <img class="animation__shake" src="<?= base_url('asset') ?>/dist/img/AdminLTELogo.png" alt="AdminLTELogo" height="60" width="60">
+  </div>
 
-    <!--End Header-->
-    <!--Start Container-->
-    <div id="main" class="container-fluid">
-        <div class="row">
-            <div id="sidebar-left" class="col-xs-2 col-sm-2">
-                <ul class="nav main-menu">
-                    <?= $this->include('components/sidebar') ?>
-                </ul>
-            </div>
-            <!--Start Content-->
-            <div id="content" class="col-xs-12 col-sm-10">
-                <div id="about">
-                    <div class="about-inner">
-                        <h4 class="page-header">Aplikasi Manajemen SPBU</h4>
-                        <p>spbuPro team</p>
-                        <p>Homepage - <a href="https://spbupromedia.com" target="_blank">https://spbupromedia.com</a></p>
-                        <p>Email - <a href="mailto:spbupromedia@gmail.com">spbupromedia@gmail.com</a></p>
-                        <p>Instagram - <a href="https://instagram.com/spbupro" target="_blank">https://instagram.com/spbupro</a></p>
-                        <p>Versi - 2.0.0</p>
-                    </div>
-                </div>
-                <!-- <div class="preloader">
-                    <img src="<?= base_url() ?>/assets/img/devoops_getdata.gif" class="devoops-getdata" alt="preloader" />
-                </div> -->
-                <?= $this->renderSection('content') ?>
-            </div>
-            <!--End Content-->
-        </div>
-    </div>
-    <!--End Container-->
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <!-- <script src="http://code.jquery.com/jquery.js"></script> -->
-    <script src="<?= base_url() ?>/assets/plugins/jquery/jquery.min.js"></script>
-    <script src="<?= base_url() ?>/assets/plugins/jquery-ui/jquery-ui.min.js"></script>
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="<?= base_url() ?>/assets/plugins/bootstrap/bootstrap.min.js"></script>
-    <script src="<?= base_url() ?>/assets/plugins/justified-gallery/jquery.justifiedGallery.min.js"></script>
-    <script src="<?= base_url() ?>/assets/plugins/tinymce/tinymce.min.js"></script>
-    <script src="<?= base_url() ?>/assets/plugins/tinymce/jquery.tinymce.min.js"></script>
-    <!-- All functions for this theme + document.ready processing -->
-    <script src="<?= base_url() ?>/assets/js/devoops.js"></script>
-    <script type="text/javascript">
+  <!-- Navbar -->
+  <?= $this->include('components/navbar') ?>
+  <!-- /.navbar -->
 
-    </script>
+  <!-- Main Sidebar Container -->
+  <aside class="main-sidebar sidebar-dark-primary elevation-4">
+    <!-- Brand Logo -->
+    <a href="{{ route('home') }}" class="brand-link">
+      <img src="<?= base_url('asset') ?>/dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+      <span class="brand-text font-weight-light">CMS HMS</span>
+    </a>
+
+    <!-- Sidebar -->
+    <?= $this->include('components/sidebar') ?>
+    <!-- /.sidebar -->
+  </aside>
+
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+
+    <!-- Main content -->
+    <?= $this->renderSection('content')  ?>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+  <?= $this->include('components/footer') ?>
+
+  <!-- Control Sidebar -->
+  <aside class="control-sidebar control-sidebar-dark">
+    <!-- Control sidebar content goes here -->
+  </aside>
+  <!-- /.control-sidebar -->
+</div>
+<!-- ./wrapper -->
+
+<!-- jQuery -->
+<script src="<?= base_url('asset') ?>/plugins/jquery/jquery.min.js"></script>
+<!-- jQuery UI 1.11.4 -->
+<script src="<?= base_url('asset') ?>/plugins/jquery-ui/jquery-ui.min.js"></script>
+<!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+<script>
+  $.widget.bridge('uibutton', $.ui.button)
+</script>
+<!-- Bootstrap 4 -->
+<script src="<?= base_url('asset') ?>/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- ChartJS -->
+<script src="<?= base_url('asset') ?>/plugins/chart.js/Chart.min.js"></script>
+<!-- Sparkline -->
+<script src="<?= base_url('asset') ?>/plugins/sparklines/sparkline.js"></script>
+<!-- JQVMap -->
+<script src="<?= base_url('asset') ?>/plugins/jqvmap/jquery.vmap.min.js"></script>
+<script src="<?= base_url('asset') ?>/plugins/jqvmap/maps/jquery.vmap.usa.js"></script>
+<!-- jQuery Knob Chart -->
+<script src="<?= base_url('asset') ?>/plugins/jquery-knob/jquery.knob.min.js"></script>
+<!-- daterangepicker -->
+<script src="<?= base_url('asset') ?>/plugins/moment/moment.min.js"></script>
+<script src="<?= base_url('asset') ?>/plugins/daterangepicker/daterangepicker.js"></script>
+<!-- Tempusdominus Bootstrap 4 -->
+<script src="<?= base_url('asset') ?>/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
+<!-- Summernote -->
+<script src="<?= base_url('asset') ?>/plugins/summernote/summernote-bs4.min.js"></script>
+<!-- overlayScrollbars -->
+<script src="<?= base_url('asset') ?>/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+<!-- AdminLTE App -->
+<script src="<?= base_url('asset') ?>/dist/js/adminlte.js"></script>
+<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+<script src="<?= base_url('asset') ?>/dist/js/pages/dashboard.js"></script>
 
 <?= $this->renderSection('custom-scripts') ?>
-</body>
 
+</body>
 </html>

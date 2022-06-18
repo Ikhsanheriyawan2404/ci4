@@ -2,95 +2,58 @@
 
 <?= $this->section('content') ?>
 
-<div class="row">
-	<div id="breadcrumb" class="col-xs-12">
-		<a href="#" class="show-sidebar">
-			<i class="fa fa-bars"></i>
-		</a>
-		<ol class="breadcrumb pull-left">
-			<li><a href="#">Dashboard</a></li>
-			<li><a href="#">Tables</a></li>
-			<li><a href="#">Data Tables</a></li>
-		</ol>
-	</div>
+<!-- Content Header (Page header) -->
+<div class="content-header">
+    <div class="container-fluid">
+    <div class="row mb-2">
+        <div class="col-sm-6">
+        <h1 class="m-0"><?= $title ?? '' ?></h1>
+        </div><!-- /.col -->
+        <div class="col-sm-6">
+        <ol class="breadcrumb float-sm-right">
+            <li class="breadcrumb-item">Home</li>
+            <li class="breadcrumb-item active">Index</li>
+        </ol>
+        </div><!-- /.col -->
+    </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
 </div>
+<!-- /.content-header -->
 
-<div class="page-header">
-    <a class="btn btn-primary btn-sm" onclick="tambah()"><span><i class="fa fa-users"></i></span> Tambah </a>
-</div>
-
-<div class="row">
-	<div class="col-xs-12">
-		<div class="box">
-			<div class="box-header">
-				<div class="box-name">
-					<i class="fa fa-usd"></i>
-					<span>Data Item</span>
-				</div>
-				<div class="box-icons">
-					<a class="collapse-link">
-						<i class="fa fa-chevron-up"></i>
-					</a>
-					<a class="expand-link">
-						<i class="fa fa-expand"></i>
-					</a>
-					<a class="close-link">
-						<i class="fa fa-times"></i>
-					</a>
-				</div>
-				<div class="no-move"></div>
-			</div>
-			<div class="box-content no-padding">
-                
-				<table class="table table-bordered table-striped table-hover table-heading table-datatable" id="example">
-					<thead>
-						<tr>
-							<th>No</th>
-							<th>Name</th>
-							<th>Category ID</th>
-							<th>ACtion</th>
-						</tr>
-					</thead>
-					<tbody>
-					
-					</tbody>
-				</table>
-			</div>
-		</div>
-	</div>
-</div>
-
-
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Modal titleh</5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true"></span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <form id="form-users">
-                    <div class="form-group">
-                        <label for="name">Nama Item</label>
-                        <input type="hidden" name="item_id" id="item_id">
-                        <input type="text" class="form-control" id="name" name="name">
-                    </div>
-                    <div class="form-group">
-                        <label for="category_id">Category</label>
-                        <input type="text" class="form-control" id="category_id" name="category_id">
-                    </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Closebutton>
-                <button type="button" class="btn btn-primary" onclick="proses()">Save changesbutton>
-            </div>
+<div class="container-fluid mb-3 d-flex justify-content-end">
+    <div class="row">
+        <div class="col-12">
+            <a href="" class="btn btn-sm btn-primary">Tambah <i class="fa fa-plus"></i></a>
         </div>
     </div>
 </div>
+
+<div class="container">
+    <div class="card card-primary">
+        <div class="card-header">
+            <h3 class="card-title">Data Item</h3>
+        </div>
+        <!-- /.card-header -->
+        <div class="card-body">
+            <table id="example" class="table table-bordered table-striped">
+                <thead class="table-dark">
+                    <tr>
+                        <th style="width: 1%">No.</th>
+                        <th>Name</th>
+                        <th>Nama Kategori</th>
+                        <th class="text-center" style="width: 10%"><i class="fas fa-cogs"></i></th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                </tbody>
+            </table>
+        </div>
+        <!-- /.card-body -->
+    </div>
+    <!-- /.card -->
+</div>
+
 
 <?= $this->section('custom-styles') ?>
 
