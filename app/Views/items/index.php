@@ -16,7 +16,7 @@
 </div>
 
 <div class="page-header">
-    <a class="btn btn-primary btn-sm" onchange="tambah()"><span><i class="fa fa-users"></i></span> Tambah </a>
+    <a class="btn btn-primary btn-sm" onclick="tambah()"><span><i class="fa fa-users"></i></span> Tambah </a>
 </div>
 
 <div class="row">
@@ -110,103 +110,103 @@
     
 <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
 
-<script type="text/javascript">
+<script>
 let url;
 let status = 'tambah';
 
 $(document).ready(function() {
     show_tables();
-
-    function edit(id_user) {
-        status = 'edit';
-        $('#exampleModal').modal('show');
-        $('#id_user').val(id_user);
-        $.ajax({
-            url: " echo base_url('home/edit'); ?>",
-            type: 'POST',
-            dataType: 'JSON',
-            data: $('#form-users').serialize(),
-            success: function(x) {
-                if (x.sukses == true) {
-                    $('#nama_user').val(x.data.nama_user);
-                    $('#alamat').val(x.data.alamat);
-                }
-            }
-        });
-    }
-
-    function hapus(id_user) {
-        $.ajax({
-            url: " echo base_url('home/hapus'); ?>",
-            type: 'POST',
-            dataType: 'JSON',
-            data: {
-                id_user: id_user
-            },
-            success: function(x) {
-                if (x.sukses == true) {
-                    tampil_table_users();
-                }
-            }
-        });
-    }
-
-    function proses() {
-        if (status == 'tambah') {
-            url = " echo base_url('home/tambah'); ?>";
-        } else if (status == 'edit') {
-            url = " echo base_url('home/update'); ?>";
-        } else {
-            url = " echo base_url('home/hapus'); ?>";
-        }
-
-        $.ajax({
-            url: url,
-            type: 'POST',
-            dataType: 'JSON',
-            data: $('#form-users').serialize(),
-            success: function(x) {
-                if (x.sukses == true) {
-                    $('#exampleModal').modal('hide');
-                    tampil_table_users();
-                }
-            }
-        });
-    }
-
-    function show_tables() {
-        $('#example').DataTable({
-            processing: true,
-            serverSide: true,
-            bDestroy: true,
-            responsive: true,
-            ajax: {
-                url: "<?= base_url('item/datatables') ?>",
-                type: "GET",
-                data: {},
-            },
-            columnDefs: [{
-                    targets: [0, -1],
-                    orderable: false,
-                },
-                {
-                    width: "1%",
-                    targets: [0, -1],
-                },
-                {
-                    className: "dt-nowrap",
-                    targets: [-1],
-                }
-            ],
-        });
-    }
 });
 
 function tambah() {
-    status = 'tambah';
-    alert('htest');
+        status = 'tambah';
+        // alert('htest');
+        $('#exampleModal').modal('show');
+        $('#form-users')[0].reset();
+    }
+
+function edit(id_user) {
+    status = 'edit';
     $('#exampleModal').modal('show');
-    $('#form-users')[0].reset();
+    $('#id_user').val(id_user);
+    $.ajax({
+        url: " echo base_url('home/edit'); ?>",
+        type: 'POST',
+        dataType: 'JSON',
+        data: $('#form-users').serialize(),
+        success: function(x) {
+            if (x.sukses == true) {
+                $('#nama_user').val(x.data.nama_user);
+                $('#alamat').val(x.data.alamat);
+            }
+        }
+    });
+}
+
+function hapus(id_user) {
+    $.ajax({
+        url: " echo base_url('home/hapus'); ?>",
+        type: 'POST',
+        dataType: 'JSON',
+        data: {
+            id_user: id_user
+        },
+        success: function(x) {
+            if (x.sukses == true) {
+                tampil_table_users();
+            }
+        }
+    });
+}
+
+function proses() {
+    if (status == 'tambah') {
+        url = " echo base_url('home/tambah'); ?>";
+    } else if (status == 'edit') {
+        url = " echo base_url('home/update'); ?>";
+    } else {
+        url = " echo base_url('home/hapus'); ?>";
+    }
+
+    $.ajax({
+        url: url,
+        type: 'POST',
+        dataType: 'JSON',
+        data: $('#form-users').serialize(),
+        success: function(x) {
+            if (x.sukses == true) {
+                $('#exampleModal').modal('hide');
+                tampil_table_users();
+            }
+        }
+    });
+}
+
+function show_tables() {
+    $('#example').DataTable({
+        processing: true,
+        serverSide: true,
+        bDestroy: true,
+        responsive: true,
+        ajax: {
+            url: "<?= base_url('item/datatables') ?>",
+            type: "GET",
+            data: {},
+        },
+        columnDefs: [{
+                targets: [0, -1],
+                orderable: false,
+            },
+            {
+                width: "1%",
+                targets: [0, -1],
+            },
+            {
+                className: "dt-nowrap",
+                targets: [-1],
+            }
+        ],
+    });
 }
 
 </script>
