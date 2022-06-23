@@ -49,6 +49,7 @@ $routes->resource('category', ['filter' => 'isLoggedIn']);
 $routes->get('item/datatables', 'Item::datatables', ['filter' => 'isLoggedIn']);
 $routes->get('item/multipleForm', 'Item::multipleForm', ['filter' => 'isLoggedIn']);
 $routes->post('item/multipleSave', 'Item::multipleSave', ['filter' => 'isLoggedIn']);
+$routes->delete('item/deleteAll', 'Item::deleteAll', ['filter' => 'isLoggedIn']);
 $routes->resource('item', ['filter' => 'isLoggedIn']);
 // $routes->get('item', 'Item::index', ['filter' => 'isLoggedIn']);
 

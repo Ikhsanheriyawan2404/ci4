@@ -20,12 +20,15 @@
 </div>
 <!-- /.content-header -->
 
+<form action="<?= site_url('item/deleteAll') ?>" method="post" id="formDeleteAll">
+<input type="hidden" name="_method" value="DELETE">
+
 <div class="container-fluid mb-3 d-flex justify-content-end">
     <div class="row">
         <div class="col-12">
             <a onclick="tambah()" class="btn btn-sm btn-primary">Tambah <i class="fa fa-plus"></i></a>
             <a class="btn btn-sm btn-info btnMultipleAdd">Mulitple Add <i class="fa fa-plus"></i></a>
-            <a class="btn btn-sm btn-danger deleteAll">Hapus Semua <i class="fa fa-trash-alt"></i></a>
+            <button type="submit" class="btn btn-sm btn-danger deleteAll">Hapus Semua <i class="fa fa-trash-alt"></i></button>
         </div>
     </div>
 </div>
@@ -42,7 +45,7 @@
             <table id="example" class="table table-bordered table-striped">
                 <thead class="table-dark">
                     <tr>
-                        <th><input type="checkbox" name="checkAll" id="checkAll" value=""></th>
+                        <th><input type="checkbox" name="checkAll" id="checkAll"></th>
                         <th style="width: 1%">No.</th>
                         <th>Name</th>
                         <th>Nama Kategori</th>
@@ -90,6 +93,9 @@
     </div>
   </div>
 </div>
+
+</form>
+<!-- /.Form Delete All -->
 
 <?= $this->section('custom-styles') ?>
 
@@ -143,6 +149,50 @@ $(document).ready(function() {
             $('.checkbox').prop('checked', false);
         }
     })
+
+    $('#formDeleteAll').submit(function (e) {
+        e.preventDefault();
+        let total = $('.checkbox:checked');
+        if (total.length === 0) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Perhatian',
+                text: 'Maaf silahkan pilih data yang mau dihapus!', 
+            });
+        } else {
+            Swal.fire({
+                title: 'Hapus Semua',
+                text: 'Yakin ingin menghapus semua ini?',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: `Ya, Hapus ${total.length} data ini`,
+                cancelButtonText: `Tidak`,
+            }).then((result) => {
+                $.ajax({
+                    type: "POST",
+                    url: $(this).attr('action'),
+                    data: $(this).serialize(),
+                    dataType: 'json',
+                    success: function (response) {
+                        if (response.success) {
+                            Swal.fire({
+                                icon: 'success',
+                                title: 'Berhasil',
+                                text: response.success,
+                            });
+                            window.location.href = ("<?= site_url('item') ?>");
+                        }
+                    },
+                    error: function (xhr, ajaxOptions, thrownError) {
+                        alert(xhr.status + "\n" + xhr.responseText + "\n" + thrownError);
+                    }
+                });
+            });
+        }
+        return false;
+    });
 
     $('.btnMultipleAdd').click(function (e) {
         e.preventDefault();

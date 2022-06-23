@@ -40,8 +40,8 @@ class Item extends ResourceController
             $row[]  = $list->name;
             $row[]  = $list->category_name;
             $row[]  = "
-                <a onclick='edit()' class='btn btn-primary'><i class='fa fa-pencil'></i></a>
-                <a class='btn btn-danger'><i class='fa fa-trash'></i></a>
+                <a onclick='edit()' class='btn btn-sm btn-primary'><i class='fa fa-pencil-alt'></i></a>
+                <a class='btn btn-sm btn-danger'><i class='fa fa-trash'></i></a>
             ";
 
             $data[] = $row;
@@ -177,6 +177,24 @@ class Item extends ResourceController
     
                 return json_encode($message);
             }
+        }
+    }
+
+    public function deleteAll()
+    {
+        if ($this->request->isAJAX()) {
+            $item_id = $this->request->getPost('checkbox');
+
+            $total = count($item_id);
+            for ($i=0; $i < $total; $i++) { 
+                $this->item->delete($item_id[$i]);
+            }
+
+            $message = [
+                'success' => "$total Data berhasil dihapus"
+            ];
+
+            echo json_encode($message);
         }
     }
 }
