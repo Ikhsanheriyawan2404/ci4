@@ -100,8 +100,6 @@ class Item extends ResourceController
                 'category_id'    => $this->request->getVar('category_id')
             ];
 
-            // dd($data);
-
             $simpan = $this->item->insert($data);
             if ($simpan) {
                 $this->output['sukses'] = true;
@@ -145,10 +143,40 @@ class Item extends ResourceController
     public function multipleForm()
     {
         if ($this->request->isAJAX()) {
-            $msg = [
-                'data' => view('items/form-multiple')
+            $message = [
+                'data' => view('items/form-multiple', [
+                    'categories' => $this->category->findAll()
+                ])
             ];
         }
-        echo json_encode($msg);
+        echo json_encode($message);
+    }
+
+    public function multipleSave()
+    {
+        if ($this->request->isAJAX()) {
+            if ($this->validate([
+                'name' => 'required',
+                'category_id' => 'required',
+            ]))
+            {
+                $name = $this->request->getPost('name');
+                $category_id = $this->request->getPost('category_id');
+    
+                $total = count($name);
+                for ($i = 0; $i < $total; $i++) {
+                    $this->item->insert([
+                        'name' => $name[$i],
+                        'category_id' => $category_id[$i],
+                    ]);
+                }
+    
+                $message = [
+                    'success' => $total . ' Data berhasil disimpan'
+                ];
+    
+                return json_encode($message);
+            }
+        }
     }
 }
