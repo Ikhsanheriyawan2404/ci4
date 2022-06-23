@@ -24,6 +24,8 @@
     <div class="row">
         <div class="col-12">
             <a onclick="tambah()" class="btn btn-sm btn-primary">Tambah <i class="fa fa-plus"></i></a>
+            <a class="btn btn-sm btn-info btnMultipleAdd">Mulitple Add <i class="fa fa-plus"></i></a>
+            <a class="btn btn-sm btn-danger deleteAll">Hapus Semua <i class="fa fa-trash-alt"></i></a>
         </div>
     </div>
 </div>
@@ -34,10 +36,13 @@
             <h3 class="card-title">Data Item</h3>
         </div>
         <!-- /.card-header -->
-        <div class="card-body">
+        <div class="card-body table-responsive">
+        <div class="card-text viewdata"></div>
+
             <table id="example" class="table table-bordered table-striped">
                 <thead class="table-dark">
                     <tr>
+                        <th><input type="checkbox" name="checkAll" id="checkAll" value=""></th>
                         <th style="width: 1%">No.</th>
                         <th>Name</th>
                         <th>Nama Kategori</th>
@@ -105,74 +110,6 @@ let url;
 let status = 'tambah';
 
 $(document).ready(function() {
-    show_tables();
-});
-
-function tambah() {
-        status = 'tambah';
-        $('#exampleModal').modal('show');
-        $('#form-users')[0].reset();
-    }
-
-function edit(id_user) {
-    status = 'edit';
-    $('#exampleModal').modal('show');
-    $('#id_user').val(id_user);
-    $.ajax({
-        url: " echo base_url('home/edit'); ?>",
-        type: 'POST',
-        dataType: 'JSON',
-        data: $('#form-users').serialize(),
-        success: function(x) {
-            if (x.sukses == true) {
-                $('#nama_user').val(x.data.nama_user);
-                $('#alamat').val(x.data.alamat);
-            }
-        }
-    });
-}
-
-function hapus(id_user) {
-    $.ajax({
-        url: " echo base_url('home/hapus'); ?>",
-        type: 'POST',
-        dataType: 'JSON',
-        data: {
-            id_user: id_user
-        },
-        success: function(x) {
-            if (x.sukses == true) {
-                tampil_table_users();
-            }
-        }
-    });
-}
-
-function proses() {
-    if (status == 'tambah') {
-        url = " echo base_url('item/create'); ?>";
-    } else if (status == 'edit') {
-        url = " echo base_url('item/update'); ?>";
-    } else {
-        url = " echo base_url('item/delete'); ?>";
-    }
-
-    $.ajax({
-        url: url,
-        headers: {'X-Requested-With': 'XMLHttpRequest'},
-        type: 'POST',
-        // dataType: 'JSON',
-        data: $('#form-users').serialize(),
-        success: function(x) {
-            if (x.sukses == true) {
-                $('#exampleModal').modal('hide');
-                tampil_table_users();
-            }
-        }
-    });
-}
-
-function show_tables() {
     $('#example').DataTable({
         processing: true,
         serverSide: true,
@@ -196,7 +133,123 @@ function show_tables() {
             }
         ],
     });
-}
+
+    $('#checkAll').click(function (e) {
+        if ($(this).is(":checked")) {
+            $('.checkbox').prop('checked', true);
+        } else {
+            $('.checkbox').prop('checked', false);
+        }
+    })
+
+    $('.btnMultipleAdd').click(function (e) {
+        e.preventDefault();
+        $.ajax({
+            url: "<?= site_url('item/multipleForm') ?>",
+            // headers: {'X-Requested-With': 'XMLHttpRequest'},
+            dataType: 'json',
+            beforeSend: function () {
+                $('.viewdata').html('<i class="fa fa-spin fa-spinner">')
+            },
+            success: function (response) {
+                $('.viewdata').html(response.data).show();
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                alert(xhr.status + "\n" + xhr.responseText + "\n" + thrownError);
+            }
+        })
+    });
+});
+
+// function tambah() {
+//         status = 'tambah';
+//         $('#exampleModal').modal('show');
+//         $('#form-users')[0].reset();
+//     }
+
+// function edit(id_user) {
+//     status = 'edit';
+//     $('#exampleModal').modal('show');
+//     $('#id_user').val(id_user);
+//     $.ajax({
+//         url: " echo base_url('home/edit'); ?>",
+//         type: 'POST',
+//         dataType: 'JSON',
+//         data: $('#form-users').serialize(),
+//         success: function(x) {
+//             if (x.sukses == true) {
+//                 $('#nama_user').val(x.data.nama_user);
+//                 $('#alamat').val(x.data.alamat);
+//             }
+//         }
+//     });
+// }
+
+// function hapus(id_user) {
+//     $.ajax({
+//         url: " echo base_url('home/hapus'); ?>",
+//         type: 'POST',
+//         dataType: 'JSON',
+//         data: {
+//             id_user: id_user
+//         },
+//         success: function(x) {
+//             if (x.sukses == true) {
+//                 tampil_table_users();
+//             }
+//         }
+//     });
+// }
+
+// function proses() {
+//     if (status == 'tambah') {
+//         url = " echo base_url('item/create'); ?>";
+//     } else if (status == 'edit') {
+//         url = " echo base_url('item/update'); ?>";
+//     } else {
+//         url = " echo base_url('item/delete'); ?>";
+//     }
+
+//     $.ajax({
+//         url: url,
+//         headers: {'X-Requested-With': 'XMLHttpRequest'},
+//         type: 'POST',
+//         // dataType: 'JSON',
+//         data: $('#form-users').serialize(),
+//         success: function(x) {
+//             if (x.sukses == true) {
+//                 $('#exampleModal').modal('hide');
+//                 tampil_table_users();
+//             }
+//         }
+//     });
+// }
+
+// function show_tables() {
+//     $('#example').DataTable({
+//         processing: true,
+//         serverSide: true,
+//         responsive: true,
+//         ajax: {
+//             url: "<?= base_url('item/datatables') ?>",
+//             type: "GET",
+//             data: {},
+//         },
+//         columnDefs: [{
+//                 targets: [0, -1],
+//                 orderable: false,
+//             },
+//             {
+//                 width: "1%",
+//                 targets: [0, -1],
+//             },
+//             {
+//                 className: "dt-nowrap",
+//                 targets: [-1],
+//             }
+//         ],
+//     });
+// }
 
 </script>
 

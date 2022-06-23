@@ -4,7 +4,6 @@ namespace App\Controllers;
 
 use App\Models\CategoryModel;
 use CodeIgniter\RESTful\ResourceController;
-// use App\Models\Item;
 
 class Item extends ResourceController
 {
@@ -36,6 +35,7 @@ class Item extends ResourceController
         foreach ($lists as $list) {
             $no++;
             $row    = [];
+            $row[]    = '<input type="checkbox" name="checkbox[]" class="checkbox" value="' . $list->item_id . '">';
             $row[]  = $no;
             $row[]  = $list->name;
             $row[]  = $list->category_name;
@@ -140,5 +140,15 @@ class Item extends ResourceController
     public function delete($id = null)
     {
         //
+    }
+
+    public function multipleForm()
+    {
+        if ($this->request->isAJAX()) {
+            $msg = [
+                'data' => view('items/form-multiple')
+            ];
+        }
+        echo json_encode($msg);
     }
 }
