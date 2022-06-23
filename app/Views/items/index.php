@@ -23,7 +23,7 @@
 <div class="container-fluid mb-3 d-flex justify-content-end">
     <div class="row">
         <div class="col-12">
-            <a href="" class="btn btn-sm btn-primary">Tambah <i class="fa fa-plus"></i></a>
+            <a onclick="tambah()" class="btn btn-sm btn-primary">Tambah <i class="fa fa-plus"></i></a>
         </div>
     </div>
 </div>
@@ -54,6 +54,37 @@
     <!-- /.card -->
 </div>
 
+<div class="modal" id="exampleModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form id="form-users" method="post">
+    <?= csrf_field() ?>
+      <div class="modal-body">
+            <label for="name">Nama ITem</label>
+            <input type="text" name="name" id="name" class="form-control">
+            
+            <label for="category_id">Kategori ITem</label>
+            <select name="category_id" id="category_id" class="form-control">
+                <option selected disabled>Pilih Kategori</option>
+                <?php foreach($categories as $category) : ?>
+                    <option value="<?= $category->category_id ?>"><?= $category->name ?></option>
+                <?php endforeach ?>
+            </select>
+        </div>
+        <div class="modal-footer">
+            <button type="submit" class="btn btn-primary">Save changes</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+    </form>
+    </div>
+  </div>
+</div>
 
 <?= $this->section('custom-styles') ?>
 
@@ -83,7 +114,6 @@ $(document).ready(function() {
 
 function tambah() {
         status = 'tambah';
-        // alert('htest');
         $('#exampleModal').modal('show');
         $('#form-users')[0].reset();
     }
@@ -124,17 +154,18 @@ function hapus(id_user) {
 
 function proses() {
     if (status == 'tambah') {
-        url = " echo base_url('home/tambah'); ?>";
+        url = " echo base_url('item/create'); ?>";
     } else if (status == 'edit') {
-        url = " echo base_url('home/update'); ?>";
+        url = " echo base_url('item/update'); ?>";
     } else {
-        url = " echo base_url('home/hapus'); ?>";
+        url = " echo base_url('item/delete'); ?>";
     }
 
     $.ajax({
         url: url,
+        headers: {'X-Requested-With': 'XMLHttpRequest'},
         type: 'POST',
-        dataType: 'JSON',
+        // dataType: 'JSON',
         data: $('#form-users').serialize(),
         success: function(x) {
             if (x.sukses == true) {

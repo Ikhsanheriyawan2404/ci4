@@ -2,13 +2,16 @@
 
 namespace App\Controllers;
 
+use App\Models\CategoryModel;
 use CodeIgniter\RESTful\ResourceController;
 // use App\Models\Item;
 
 class Item extends ResourceController
 {
     protected $item;
-    protected $output = [
+    protected $category;
+
+    public $output = [
         'sukses'    => false,
         'pesan'     => '',
         'data'      => []
@@ -17,6 +20,7 @@ class Item extends ResourceController
     public function __construct()
     {
         $this->item = new \App\Models\Item();
+        $this->category = new CategoryModel();
     }
 
     public function datatables()
@@ -58,6 +62,7 @@ class Item extends ResourceController
     {
         return view('items/index', [
             'title' => 'Item Index',
+            'categories' => $this->category->findAll(),
         ]);
     }
 
@@ -88,7 +93,23 @@ class Item extends ResourceController
      */
     public function create()
     {
-        //
+        // dd($this->request->isAJAX());
+        if (!$this->request->isAJAX()) {
+            $data = [
+                'name' => $this->request->getVar('name'),
+                'category_id'    => $this->request->getVar('category_id')
+            ];
+
+            // dd($data);
+
+            $simpan = $this->item->insert($data);
+            if ($simpan) {
+                $this->output['sukses'] = true;
+                $this->output['pesan']  = 'Data ditemukan';
+            }
+
+            return json_encode($this->output);
+        }
     }
 
     /**
