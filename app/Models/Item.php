@@ -81,6 +81,7 @@ class Item extends Model
         if ($data) {
             $this->builder->where($data);
         }
+        $this->builder->join('categories', 'categories.category_id = items.category_id');
         $query = $this->builder->get();
         return $query->getResult();
     }

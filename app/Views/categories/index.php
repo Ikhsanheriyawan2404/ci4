@@ -55,7 +55,7 @@
 					<?php foreach($categories as $key => $category) : ?>
 						<tr>
 							<td><?= $key + 1 ?></td>
-							<td><?= $category->name ?></td>
+							<td><?= $category->category_name ?></td>
 							<td width="10%">
 								<a href="<?= base_url('category/' . $category->category_id . '/edit')  ?>" class="btn">Edit</a>
 									<form action="<?= base_url('category/' . $category->category_id) ?>" method="post" class="d-inline">

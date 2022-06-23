@@ -73,7 +73,7 @@
             <select name="category_id" id="category_id" class="form-control">
                 <option selected disabled>Pilih Kategori</option>
                 <?php foreach($categories as $category) : ?>
-                    <option value="<?= $category->category_id ?>"><?= $category->name ?></option>
+                    <option value="<?= $category->category_id ?>"><?= $category->category_name ?></option>
                 <?php endforeach ?>
             </select>
         </div>
@@ -176,7 +176,6 @@ function show_tables() {
     $('#example').DataTable({
         processing: true,
         serverSide: true,
-        bDestroy: true,
         responsive: true,
         ajax: {
             url: "<?= base_url('item/datatables') ?>",

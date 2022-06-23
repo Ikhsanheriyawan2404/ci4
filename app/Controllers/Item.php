@@ -27,18 +27,18 @@ class Item extends ResourceController
     {
         $item = $this->item;
         $where = ['item_id !=' => 0];
-        $column_order   = array('', 'name', 'category_id');
-        $column_search  = array('name');
+        $column_order   = ['', 'name', 'category_id'];
+        $column_search  = ['name'];
         $order = array('name' => 'ASC');
         $lists = $item->get_datatables('items', $column_order, $column_search, $order, $where);
         $data = [];
         $no = $_GET['start'];
         foreach ($lists as $list) {
             $no++;
-            $row    = array();
+            $row    = [];
             $row[]  = $no;
             $row[]  = $list->name;
-            $row[]  = $list->category_id;
+            $row[]  = $list->category_name;
             $row[]  = "
                 <a onclick='edit()' class='btn btn-primary'><i class='fa fa-pencil'></i></a>
                 <a class='btn btn-danger'><i class='fa fa-trash'></i></a>
@@ -47,14 +47,14 @@ class Item extends ResourceController
             $data[] = $row;
         }
 
-        $output = array(
+        $output = [
             "draw" => $_GET['draw'],
             "recordsTotal" => $item->count_all('items', $where),
             "recordsFiltered" => $item->count_filtered('items', $column_order, $column_search, $order, $where),
             "data" => $data,
-        );
+        ];
 
-        echo json_encode($output);
+        return json_encode($output);
 
     }
 
