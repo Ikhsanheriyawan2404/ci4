@@ -14,7 +14,7 @@ class CategoryModel extends Model
     protected $returnType       = 'object';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['name'];
+    protected $allowedFields    = ['category_name'];
 
     // Dates
     protected $useTimestamps = true;
@@ -24,7 +24,7 @@ class CategoryModel extends Model
     protected $deletedField  = 'deleted_at';
 
     // Validation
-    protected $validationRules      = ['name' => 'required'];
+    protected $validationRules      = ['category_name' => 'required'];
     protected $validationMessages   = [];
     protected $skipValidation       = false;
     protected $cleanValidationRules = true;

@@ -57,7 +57,7 @@ class Category extends ResourceController
     public function create()
     {
         $this->category->insert([
-            'name' => $this->request->getPost('name'),
+            'category_name' => $this->request->getPost('category_name'),
         ]);
 
         return redirect()->to(base_url('category'))->with('success', 'Data berhasil disimpan');
@@ -85,7 +85,7 @@ class Category extends ResourceController
     {
         $this->category->update($id,
         [
-            'name' => $this->request->getPost('name'),
+            'category_name' => $this->request->getPost('category_name'),
         ]);
 
         return redirect()->to(base_url('category'))->with('success', 'Data berhasil diedit');

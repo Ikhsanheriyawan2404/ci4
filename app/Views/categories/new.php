@@ -46,7 +46,7 @@
                     <div class="form-group">
                         <label class="col-sm-2 control-label">Nama Kategori</label>
                         <div class="col-sm-4">
-                            <input type="text" class="form-control" placeholder="First name" data-toggle="tooltip" data-placement="bottom" title="Tooltip for name" name="name" autofocus>
+                            <input type="text" class="form-control" placeholder="First name" data-toggle="tooltip" data-placement="bottom" title="Tooltip for name" name="category_name" autofocus>
                         </div>
                     </div>
                     <div class="clearfix"></div>
