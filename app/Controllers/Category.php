@@ -48,11 +48,63 @@ class Category extends ResourceController
         //
     }
 
-    /**
-     * Return a new resource object, with default properties
-     *
-     * @return mixed
-     */
+    // function action()
+	// {
+	// 	if ($this->request->getVar('action')) {
+	// 		helper(['form', 'url']);
+	// 		$name_error = '';
+    //         $error = 'no';
+    //         $success = 'no';
+
+    //         $error = $this->validate([
+    //         	'name'	=>	'required|min_length[3]',
+    //         ]);
+
+    //         if (!$error) {
+    //         	$error = 'yes';
+    //         	$validation = \Config\Services::validation();
+    //         	if ($validation->getError('name')) {
+    //         		$name_error = $validation->getError('name');
+    //         	}
+    //         } else {
+    //         	$success = 'yes';
+    //         	if($this->request->getVar('action') == 'Add')
+    //         	{
+    //         		$model = new CategoryModel();
+    //         		$model->save([
+    //         			'name'		=>	$this->request->getVar('name'),
+    //         		]);
+    //         	}
+
+    //             if($this->request->getVar('action') == 'Edit')
+    //             {
+    //                 $model = new CategoryModel();
+
+    //                 $id = $this->request->getVar('hidden_id');
+
+    //                 $data = [
+    //                     'name'      =>  $this->request->getVar('name'),
+    //                     'email'     =>  $this->request->getVar('email'),
+    //                     'gender'    =>  $this->request->getVar('gender')
+    //                 ];
+
+    //                 $model->update($id, $data);
+    //             }
+    //         }
+
+    //         $output = array(
+    //         	'name_error'	=>	$name_error,
+    //         	'email_error'	=>	$email_error,
+    //         	'gender_error'	=>	$gender_error,
+    //         	'error'			=>	$error,
+    //         	'success'		=>	$success,
+    //         	'message'		=>	$message
+    //         );
+
+    //         echo json_encode($output);
+	// 	}
+	// }
+
     public function new()
     {
         return view('categories/new', [
