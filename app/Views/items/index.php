@@ -97,13 +97,13 @@
 </form>
 <!-- /.Form Delete All -->
 
+<?= $this->endSection() ?>
+
 <?= $this->section('custom-styles') ?>
 
 <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap4.min.css">
 
 <?= $this->endSection() ?>
-
-<?= $this->endSection('content') ?>
 
 <?= $this->section('custom-scripts') ?>
 

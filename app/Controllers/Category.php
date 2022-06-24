@@ -4,6 +4,8 @@ namespace App\Controllers;
 
 use App\Models\CategoryModel;
 use CodeIgniter\RESTful\ResourceController;
+use monken\TablesIgniter;
+
 
 class Category extends ResourceController
 {
@@ -12,6 +14,15 @@ class Category extends ResourceController
     public function __construct()
     {
         $this->category = new CategoryModel();
+    }
+
+    public function datatables()
+    {
+        $model = $this->category;
+        $table = new TablesIgniter();
+        $table->setTable($model->noticeTable())
+              ->setOutput(["category_id", "category_name", $model->button()]);
+        return $table->getDatatable();
     }
 
     /**

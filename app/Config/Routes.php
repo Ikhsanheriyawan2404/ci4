@@ -45,6 +45,7 @@ $routes->addRedirect('/', 'home');
 
 // $routes->get('categories', 'CategoryController::index');
 
+$routes->get('category/datatables', 'Category::datatables', ['filter' => 'isLoggedIn']);
 $routes->resource('category', ['filter' => 'isLoggedIn']);
 $routes->get('item/datatables', 'Item::datatables', ['filter' => 'isLoggedIn']);
 $routes->get('item/multipleForm', 'Item::multipleForm', ['filter' => 'isLoggedIn']);

@@ -39,4 +39,21 @@ class CategoryModel extends Model
     protected $afterFind      = [];
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
+
+    public function noticeTable()
+    {
+        $builder = $this->db->table("categories");
+        return $builder;
+    }
+
+    public function button()
+    {
+        $closureFun = function($row) {
+            return '
+                <button class="btn btn-sm btn-primary"><i class="fa fa-pencil-alt"></i></button>
+                <button class="btn btn-sm btn-danger"><i class="fa fa-trash-alt"></i></button>
+            ';
+        };
+        return $closureFun;
+    }
 }
